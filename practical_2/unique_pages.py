@@ -1,4 +1,5 @@
 from pprint import pprint
+
 def main():
     unique_page_counter('execution_large.txt')
 
@@ -21,11 +22,10 @@ def unique_page_counter(file_to_read):
         offset = offset.replace('\r','')
         offset_list.append(offset)
         offset = ''
-
-#    print(page_list)
-#    print(offset_list)
-#    print(len(page_list))
-#    print(len(offset_list))
+    print(page_list)
+    # print(offset_list)
+    print(len(page_list))
+    # print(len(offset_list))
     
     unique_page_list = {}
     for page in page_list:
