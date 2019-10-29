@@ -1,7 +1,7 @@
 from pprint import pprint
 
 def main():
-    unique_page_counter('execution_10.txt')
+    unique_page_counter('execution_large.txt')
 
 def unique_page_counter(file_to_read):
     f = open(file_to_read,'r')
@@ -24,16 +24,17 @@ def unique_page_counter(file_to_read):
         else:
             current = page
     print(change_count)
+    
+    # print(page_list)
 
     current = page_list[0]
+    until_first_change_count = 0
     for page in page_list:
-        until_first_change_count = 1
         if page == current:
             until_first_change_count += 1
         else:
             break
     print(until_first_change_count)
-    print(len(page_list))
 
 if __name__ == '__main__':
     main()
