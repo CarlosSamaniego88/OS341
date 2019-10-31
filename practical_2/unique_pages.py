@@ -23,7 +23,7 @@ def unique_page_counter(file_to_read):
         offset_list.append(offset)
         offset = ''
 
-    print(page_list)
+    # print(page_list)
     print(len(page_list))
     
     unique_page_list = {}

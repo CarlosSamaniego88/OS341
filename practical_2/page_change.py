@@ -25,7 +25,7 @@ def unique_page_counter(file_to_read):
             current = page
     print(change_count)
     
-    # print(page_list)
+    print(page_list[:10])
 
     current = page_list[0]
     until_first_change_count = 0
@@ -34,6 +34,7 @@ def unique_page_counter(file_to_read):
             until_first_change_count += 1
         else:
             break
+
     print(until_first_change_count)
 
 if __name__ == '__main__':
