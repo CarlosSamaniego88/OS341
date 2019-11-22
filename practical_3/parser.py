@@ -1,3 +1,5 @@
+import re
+
 def main():
     fs_parser('/Users/Carlos/Projects/OS341/practical_3/fs1.txt')
 
@@ -61,16 +63,45 @@ def fs_parser(file):
     for item in data_block_set:
         item += ']'
         new_dbl.append(item)
-    print(new_dbl)
+    
+    length_dbl = len(new_dbl)
+    new_dbl[len(new_dbl)-1] = new_dbl[len(new_dbl)-1][:-1]
+    # print(new_dbl)
 
+    final_dbl = []
     for item in new_dbl:
-        # print(item)
-        item = item.replace(' ', ', ')
-        # for subitem in item:
-        #     subitem = subitem.replace(' ', ', ')
-        # print(item)
-        print(item)
+        item = item.split(' ')
+        for subitem in item:
+            if '[' in subitem:
+                subitem = subitem.replace('[','')
+            if ']' in subitem:
+                subitem = subitem.replace(']','')
+            if '(' in subitem:
+                subitem = subitem.replace('(','')
+            if ')' in subitem:
+                subitem = subitem.replace(')','')
+            final_dbl.append(subitem)
         
+    print(final_dbl)
+    # for item in new_dbl:
+    #     # print(item)
+    #     item = item.replace(' ', ', ')
+    #     # for subitem in item:
+    #     #     subitem = subitem.replace(' ', ', ')
+    #     # print(item)
+    #     print(item)
+    
+    # for item in new_dbl:
+    #     # print(item)
+    #     item = item.replace(' ', ', ')
+    #     item = item.split(', ')
+    #     if 'u' in item:
+    #         item = item.replace('u', 'HI')
+    #     # item = item.replace('(', '')
+    #     # item = item.replace(')', '')
+    #     # for subitem in item:
+    #     #     print(subitem)
+    #     print(item)
 
 
     # data_block_set = data_block_set.replace('[', '')
