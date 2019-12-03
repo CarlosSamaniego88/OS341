@@ -56,9 +56,7 @@ def fs_parser(file):
     # print(type_list)
 
     ################ PARSED DATA BLOCK SET ################
-    # print(data_block_set)
     data_block_set = data_block_set.split('] ')
-    # print(data_block_set)
     new_dbl = []
     for item in data_block_set:
         item += ']'
@@ -70,78 +68,44 @@ def fs_parser(file):
 
     final_dbl = []
     for item in new_dbl:
+        if '[' in item:
+            item = item.replace('[','')
+        if ']' in item:
+            item = item.replace(']','')
         item = item.split(' ')
-        for subitem in item:
-            if '[' in subitem:
-                subitem = subitem.replace('[','')
-            if ']' in subitem:
-                subitem = subitem.replace(']','')
-            if '(' in subitem:
-                subitem = subitem.replace('(','')
-            if ')' in subitem:
-                subitem = subitem.replace(')','')
-            final_dbl.append(subitem)
-        
-    print(final_dbl)
-    # for item in new_dbl:
-    #     # print(item)
-    #     item = item.replace(' ', ', ')
-    #     # for subitem in item:
-    #     #     subitem = subitem.replace(' ', ', ')
-    #     # print(item)
-    #     print(item)
+        final_dbl.append(item)
+    # print(final_dbl)    
     
-    # for item in new_dbl:
-    #     # print(item)
-    #     item = item.replace(' ', ', ')
-    #     item = item.split(', ')
-    #     if 'u' in item:
-    #         item = item.replace('u', 'HI')
-    #     # item = item.replace('(', '')
-    #     # item = item.replace(')', '')
-    #     # for subitem in item:
-    #     #     print(subitem)
-    #     print(item)
-
-
-    # data_block_set = data_block_set.replace('[', '')
-    # data_block_set = data_block_set.replace(']', ':')
-    # data_block_set = data_block_set.replace(' ', '')
-    # # print(data_block_set)
-    # data_block_set = data_block_set.split(':')
-    # # print(data_block_set)
-    # # print(len(data_block_set))
-    # data_block_set.pop()
-    # # print(data_block_set)
-    # data_block_set_length = len(data_block_set)
-    # # print(data_block_set_length)
-    # #Done parsing
-
-    # for item in data_block_set:
-    #     item = item.split(',')
-    #     # print(item)
+    # for item in final_dbl:
     #     for subitem in item:
-    #         if '(' in subitem or ')' in subitem:
-    #             subitem = subitem.replace('(','')
-    #             subitem = subitem.replace(')','')
-    #             print(subitem)
-    #         # if ')' in subitem:
-    #         #     subitem = subitem.replace(')','')
-    #         #     print(subitem)
+    #         print(subitem[1:3])
 
+    #[['(.,0)', '(..,0)', '(p,1)', '(r,2)', '(w,3)'], ['(.,2)', '(..,0)', '(z,4)', '(u,3)'], ['k'], ['n'], [''], [''], [''], [''], [''], [''], [''], ['']]
+    output = []
+    for item in final_dbl:
+        print(item)
+        if len(item) > 3:
+            iterateDir(item, type_list)
+        else:
+            pass
 
-    # for item in data_block_set:
+    # print(output)
+
+    #cleans commas
+    # final_output = []
+    # for item in output:
+    #     if ',' in item:
+    #         item = item.replace(',','')
     #     print(item)
 
-    # current_directory = '/.'
-    # back_directory = '/..'
+def iterateDir(item, type_list):
+    for subitem in item:
+        for num in range(-10,16):
+            if subitem[num] == type_list.index(num):
+                iterateDir(item)
+        print('/'+subitem[1:3])
 
-    # print(current_directory)
-    # print(back_directory)
 
-    # for item in new_list:
-        
-    
 if __name__ == "__main__":
     main()
 
@@ -154,3 +118,14 @@ if __name__ == "__main__":
 # /r/z
 # /r/u
 # /w
+
+#current:
+# /.
+# /..
+# /p
+# /r
+# /w
+# /.
+# /..
+# /z
+# /u
