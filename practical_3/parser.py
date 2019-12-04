@@ -1,7 +1,7 @@
 import re
 
 def main():
-    fs_parser('/Users/Carlos/Projects/OS341/practical_3/fs1.txt')
+    fs_parser('/Users/Carlos/Projects/OS341/practical_3/fs2.txt')
 
 def fs_parser(file):
     f = open(file,'r')
@@ -74,58 +74,37 @@ def fs_parser(file):
             item = item.replace(']','')
         item = item.split(' ')
         final_dbl.append(item)
-    # print(final_dbl)    
-    
-    # for item in final_dbl:
-    #     for subitem in item:
-    #         print(subitem[1:3])
-
+  
+    print(final_dbl)
+    print(new_list)
+    print(type_list)
+    print('-------------------------------------------------------------------------------------------------------------------------------------------------------------')
     #[['(.,0)', '(..,0)', '(p,1)', '(r,2)', '(w,3)'], ['(.,2)', '(..,0)', '(z,4)', '(u,3)'], ['k'], ['n'], [''], [''], [''], [''], [''], [''], [''], ['']]
+    # for item in final_dbl:
     output = []
-    for item in final_dbl:
-        print(item)
-        if len(item) > 3:
-            iterateDir(item, type_list)
-        else:
-            pass
+    printdir(final_dbl[0], '/', new_list, final_dbl)
 
-    # print(output)
-
-    #cleans commas
-    # final_output = []
-    # for item in output:
-    #     if ',' in item:
-    #         item = item.replace(',','')
-    #     print(item)
-
-def iterateDir(item, type_list):
-    for subitem in item:
-        for num in range(-10,16):
-            if subitem[num] == type_list.index(num):
-                iterateDir(item)
-        print('/'+subitem[1:3])
+def printdir(directory, starting_folder, new_list, final_dbl):
+    i = 0
+    print(starting_folder+'.')
+    print(starting_folder+'..')
+    for item in directory:
+        if i > 1:
+            index = re.findall(r'\d+', item)
+            if index:
+                index = int(index[0])
+                check = str(new_list[index])
+                # print('check is', check)
+                check_index = re.findall(r'\d+', check)
+                check_index = int(check_index[0])
+                if 'f' in check:
+                    comma_location = re.search(",", item).start()
+                    print(starting_folder + item[1:comma_location])
+                if 'd' in check:
+                    # print(item[1:3])
+                    printdir(final_dbl[check_index], starting_folder + item[1:comma_location]+'/', new_list, final_dbl)
+        i+=1
 
 
 if __name__ == "__main__":
     main()
-
-
-# /.
-# /..
-# /p
-# /r/.
-# /r/..
-# /r/z
-# /r/u
-# /w
-
-#current:
-# /.
-# /..
-# /p
-# /r
-# /w
-# /.
-# /..
-# /z
-# /u
