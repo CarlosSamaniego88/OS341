@@ -91,6 +91,3 @@ def parse_datablocks(file):
         final_dbl.append(item)
    
     return final_dbl
-
-if __name__ == "__main__":
-    main()
