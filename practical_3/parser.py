@@ -1,14 +1,7 @@
-import re
-
-def main():
-    fs_parser('/Users/Carlos/Projects/OS341/practical_3/fs2.txt')
-
-def fs_parser(file):
+def parse_inodes(file):
     f = open(file,'r')
     lines = f.readlines()
 
-    i = 1
-    # for line in lines:
     inode_num = lines[0]
     inode_num = int(inode_num)
 
@@ -52,10 +45,32 @@ def fs_parser(file):
         new_list.append('Empty')
         type_list.append('Unknown')
 
-    # print(new_list)
-    # print(type_list)
 
-    ################ PARSED DATA BLOCK SET ################
+    return new_list
+
+def parse_datablocks(file):
+    f = open(file,'r')
+    lines = f.readlines()
+
+    inode_num = lines[0]
+    inode_num = int(inode_num)
+
+    data_block_num = lines[1]
+    data_block_num = int(data_block_num)
+
+    inode_bitmap = lines[2]
+    inode_bitmap = int(inode_bitmap)
+    
+    inode_set = lines[3]
+    inode_set = str(inode_set)
+    
+    data_bitmap = lines[4]
+    data_bitmap = int(data_bitmap)
+    
+    data_block_set = lines[5]
+    data_block_set = str(data_block_set)
+
+     ################ PARSED DATA BLOCK SET ################
     data_block_set = data_block_set.split('] ')
     new_dbl = []
     for item in data_block_set:
@@ -74,37 +89,8 @@ def fs_parser(file):
             item = item.replace(']','')
         item = item.split(' ')
         final_dbl.append(item)
-  
-    print(final_dbl)
-    print(new_list)
-    print(type_list)
-    print('-------------------------------------------------------------------------------------------------------------------------------------------------------------')
-    #[['(.,0)', '(..,0)', '(p,1)', '(r,2)', '(w,3)'], ['(.,2)', '(..,0)', '(z,4)', '(u,3)'], ['k'], ['n'], [''], [''], [''], [''], [''], [''], [''], ['']]
-    # for item in final_dbl:
-    output = []
-    printdir(final_dbl[0], '/', new_list, final_dbl)
-
-def printdir(directory, starting_folder, new_list, final_dbl):
-    i = 0
-    print(starting_folder+'.')
-    print(starting_folder+'..')
-    for item in directory:
-        if i > 1:
-            index = re.findall(r'\d+', item)
-            if index:
-                index = int(index[0])
-                check = str(new_list[index])
-                # print('check is', check)
-                check_index = re.findall(r'\d+', check)
-                check_index = int(check_index[0])
-                if 'f' in check:
-                    comma_location = re.search(",", item).start()
-                    print(starting_folder + item[1:comma_location])
-                if 'd' in check:
-                    # print(item[1:3])
-                    printdir(final_dbl[check_index], starting_folder + item[1:comma_location]+'/', new_list, final_dbl)
-        i+=1
-
+   
+    return final_dbl
 
 if __name__ == "__main__":
     main()
