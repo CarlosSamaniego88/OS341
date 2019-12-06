@@ -20,14 +20,12 @@ def printdir(directory, starting_folder, new_list, final_dbl):
             if index:
                 index = int(index[0])
                 check = str(new_list[index])
-                # print('check is', check)
                 check_index = re.findall(r'\d+', check)
                 check_index = int(check_index[0])
                 if 'f' in check:
                     comma_location = re.search(",", item).start()
                     print(starting_folder + item[1:comma_location])
                 if 'd' in check:
-                    # print(item[1:3])
                     printdir(final_dbl[check_index], starting_folder + item[1:comma_location]+'/', new_list, final_dbl)
         i+=1
 
