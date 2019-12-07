@@ -3,7 +3,7 @@ from parser import *
 
 def main():
     #CHANGE THE PATHS AND THE "fs#.txt!!! all should match!"
-    new_list = parse_inodes('/Users/Carlos/Projects/OS341/practical_3/fs1.txt')
+    new_list = parse_inodes('/Users/Carlos/Projects/OS341/practical_3/fs2.txt')
     final_dbl = parse_datablocks('/Users/Carlos/Projects/OS341/practical_3/fs2.txt')
     access_file = '/Users/Carlos/Projects/OS341/practical_3/file_access2.txt'
     
