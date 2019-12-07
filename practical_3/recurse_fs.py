@@ -2,6 +2,7 @@ import re
 from parser import * 
 
 def main():
+    #CHANGE THE PATHS AND THE "fs#.txt!!! all should match!"
     new_list = parse_inodes('/Users/Carlos/Projects/OS341/practical_3/fs2.txt')
     final_dbl = parse_datablocks('/Users/Carlos/Projects/OS341/practical_3/fs2.txt')
 
